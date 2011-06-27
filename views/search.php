@@ -1,7 +1,7 @@
 <h2>Search Your Library</h2>
 <?php
 //set default value for Worldcat API key
-$key = isset($_GET['key']) ? trim(strip_tags(urlencode($_GET['key']))) : 'B3F6fY0fdaYyWFaU2a5a25QD28BsxH6H8wZnViTESKxZZBR7Fg71nC0V6IeXa78EKAYsGzhMAyYyEihv';
+$key = isset($_GET['key']) ? trim(strip_tags(urlencode($_GET['key']))) : 'YOUR WORLDCAT API KEY HERE';
 //set default value for query
 $q = isset($_GET['q']) ? trim(strip_tags(urlencode($_GET['q']))) : null;
 //set default value for latitude

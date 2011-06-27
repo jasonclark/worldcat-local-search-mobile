@@ -40,7 +40,7 @@ $params = array(
 	'libtype' => $type, //type of library to search where 1 = academic, 2 = public, 3 = government, and 4 = other
 	'format' => 'json', //append output format
 	//'callback' => 'libLocations',
-	'wskey' => 'B3F6fY0fdaYyWFaU2a5a25QD28BsxH6H8wZnViTESKxZZBR7Fg71nC0V6IeXa78EKAYsGzhMAyYyEihv', //Worldcat API key
+	'wskey' => 'YOUR WORLDCAT API KEY HERE', //Worldcat API key
 	//all possible options are documented at http://oclc.org/developer/documentation/worldcat-search-api/library-locations
 );
 
