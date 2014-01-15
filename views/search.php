@@ -1,16 +1,16 @@
 <h2>Search Your Library</h2>
 <?php
 //set default value for Worldcat API key
-$key = isset($_GET['key']) ? trim(strip_tags(urlencode($_GET['key']))) : 'YOUR WORLDCAT API KEY HERE';
+$key = isset($_GET['key']) ? trim(strip_tags(htmlentities($_GET['key']))) : 'YOUR-WORLDCAT-API-KEY-HERE';
 //set default value for query
-$q = isset($_GET['q']) ? trim(strip_tags(urlencode($_GET['q']))) : null;
+$q = isset($_GET['q']) ? trim(strip_tags(htmlentities($_GET['q']))) : null;
 //set default value for latitude
 $lat = isset($_GET['lat']) ? $_GET['lat'] : null;
 //set default value for longitude
 $lng = isset($_GET['lng']) ? $_GET['lng'] : null;
 //set default value for library collection to search - list available at http://www.oclc.org/contacts/libraries/
 //docs here - http://oclc.org/developer/documentation/worldcat-search-api/library-catalog-url 
-$library = isset($_GET['library']) ? trim(strip_tags($_GET['library'])) : 'MZF';
+$library = isset($_GET['library']) ? trim(strip_tags(htmlentities($_GET['library']))) : 'MZF';
 
 //check if the starting row variable was passed
 if (!isset($_GET['start']) or !is_numeric($_GET['start'])) {
@@ -30,15 +30,15 @@ if (!isset($_GET['limit']) or !is_numeric($_GET['limit'])) {
 }
 
 //set base url for our opensearch request to Worldcat Search API
-$base = 'http://www.worldcat.org/webservices/catalog/search/worldcat/opensearch?';
+$base = 'http://www.worldcat.org/webservices/catalog/search/opensearch?';
 
 $params = array(
-  'q' => $q,
+  'wskey' => $key, //Worldcat API key
   'format' => 'atom', //type of format to output
   'cformat' => 'mla', //append citation format
   'start' => $start, //starting number for results to return
   'count' => $limit, // optional argument supplies number of results to return
-  'wskey' => $key, //Worldcat API key
+  'q' => $q,
   //all possible options are documented at http://worldcat.org/devnet/wiki/SearchAPIDetails
 );
 
@@ -70,8 +70,8 @@ else: //if form has query, show form and process
 </form> 
 
 <?php
-//-hello REMOVE for production
-echo $base.http_build_query($params);
+//REMOVE for production - prints out raw API call
+//echo $base.http_build_query($params);
 
 //build request, encode entities (using http_build_query), and send to Worldcat Search API
 $request = simplexml_load_file($base.http_build_query($params));

@@ -14,9 +14,12 @@ $base = 'http://www.worldcat.org/webservices/catalog/content/libraries/'.$id.'?'
 
 $params = array(
 	'oclcsymbol' => $library,
-	'wskey' => 'YOUR WOLRDCAT API KEY HERE', //Worldcat API key
+	'wskey' => 'YOUR-WORLDCAT-API-KEY-HERE', //Worldcat API key
 	//all possible options are documented at http://oclc.org/developer/documentation/worldcat-search-api/library-catalog-url 
 );
+
+//REMOVE for production - prints out raw API call
+//echo $base.http_build_query($params);
 
 //build request, encode entities (using http_build_query), and send to Worldcat Search API
 $data = simplexml_load_file($base.http_build_query($params));
